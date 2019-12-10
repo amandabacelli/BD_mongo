@@ -1,0 +1,90 @@
+{
+	"nomeCompleto": "Analu Milena Rafaela da Mota",
+	"email": "analu@email.com.br",
+	"dataNascimento": "13/06/1988",
+	"estadoCivil": "Casada",
+	"rg": "236455904",
+	"cpf": "98700829803",
+	"telefoneResidencial": "01337653470",
+	"telefoneCelular": "013991500089",
+	"cep": "11030970",
+	"rua": "Rua Vereador Henrique Soler",
+	"numero": "295",
+	"bairro": "Ponta da Praia",
+	"cidade": "Santos",
+	"estado": "SP",
+	"formacaoAcademica": "Ensino Médio Completo"
+	
+},
+
+{
+	"nomeCompleto": "Kamilly Louise Fogaça",
+	"email": "kamillylouisefogaca_@jonasmartinez.com",
+	"dataNascimento": "18/08/1996",
+	"estadoCivil": "Solteira",
+	"rg": "305924758",
+	"cpf": "60110719883",
+	"telefoneResidencial": "01939320015",
+	"telefoneCelular": "019983253194",
+	"cep": "13460970",
+	"rua": "Rua Rio Branco",
+	"numero": "468",
+	"bairro": "Centro",
+    "cidade": "Nova Odessa",
+    "estado": "SP",
+	"formacaoAcademica": "Superior Cursando"
+	
+}
+
+{
+	"nome_completo": "Milena Simone Carla Pires",
+	"email": "milenasimonecarlapires-78@hotmnail.com",
+	"data_nascimento": "19/10/1993",
+	"estado_civil": "Solteira",
+	"rg": "455483632",
+	"cpf": "49962481813",
+	"telefone_residencial": "01137312054",
+	"telefone_celular": "011984626172",
+	"cep": "04854820",
+	"rua": "Travessa Valderimar Guedes Costa",
+	"numero": "466",
+	"bairro": "Chácara Cocaia",
+    "cidade": "São Paulo",
+    "estado": "SP",
+	"formacao_academica": "Superior Cursando"
+	
+}
+
+{
+	"nomeCompleto": "Guilhermina Marota",
+	"email": "Guilhermina_marota@email.com.br",
+	"dataNascimento": "20/03/1993",
+	"estadoCivil": "Casada",
+	"rg": "236455904",
+	"cpf": "98700829803",
+	"telefoneResidencial": "01337653470",
+	"telefoneCelular": "013991500089",
+	"cep": "11030970",
+	"rua": "Rua Vereador Henrique Soler",
+	"numero": "295",
+	"bairro": "Ponta da Praia",
+	"cidade": "Santos",
+	"estado": "SP",
+	"formacaoAcademica": "Ensino Médio Completo",
+	"cursosInscritos":[{
+       
+        "_id": "5deac9ab58263b1b8c362f23",
+        "nomeCurso": "BackEnd",
+        "local": "Mercado Livre",
+        "periodo": "Noturno",
+        "inicioInscricao": "02/06/2019",
+        "terminoInscricao": "02/07/2019",
+        "dataInicio": "10/08/2019",
+        "dataTermino": "23/11/2019"
+       
+}]
+	
+}
+{
+	"relacaoCursos": "FrontEnd"
+}

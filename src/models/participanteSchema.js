@@ -1,67 +1,37 @@
 const mongoose = require("mongoose")
 
 const participanteSchema = new mongoose.Schema ({
-    id: {type : Number, required : true}, //automatico
-    nome_completo: { type: String, required : true},
+    nomeCompleto: { type: String, required : true},
     email: {type: String, required: true},
-    senha_acesso: {type: String, required: true},
-    confirmar_senha: {type: String, required: true},
-    data_nascimento: {type : Date, required : true},
-    estado_civil: [{
-        type: "Casada",
-        type: "Solteira",
-        type: "Viúva",
-        type: "Divorciada",
-        required : true
-    }],
+    password: {type: String, required: false},
+    confirmPassword: {type: String, required: false},
+    dataNascimento: {type : String, required : true },
+    estadoCivil: {type: String, enum: ['Casada', 'Solteira', 'Viúva', 'Divorciada'], required : true },
     rg: {type : Number, required : true},
     cpf: {type : Number, required : true},
-    telefone_residencial: {type : Number},
-    telefone_celular: {type : Number, required : true},
+    telefoneResidencial: {type : Number},
+    telefoneCelular: {type : Number, required : true},
     cep: {type : Number, required : true},
     rua: { type: String, required : true},
     numero: {type : Number, required : true},
     bairro: { type: String, required : true},
     cidade: { type: String, required : true},
-    // formacao_academica: { type: String, required : true},
-    formacao_academica: [{
-        type: "Superior Completo",
-        type: "Superior Cursando",
-        type: "Ensino Médio Completo",
-        required : true       
-    }],
-    relacaoCursos: [{
-        curso_id: Object
-        
-    }],//estrutura normalizada - colocar situação (inscrita e aluna) condição depende do resultado do processo
+    estado: { type: String, required : true},
+    formacaoAcademica: {type: String, enum: ['Superior Completo', 'Superior Cursando', 'Ensino Médio Completo'], required : true },
+    cursosInscritos: [{type: mongoose.Schema.Types.ObjectId, ref: 'cursoSchema'}],//estrutura normalizada - colocar situação (inscrita e aluna) condição depende do resultado do processo
   
 
     //informações inseridas pelo admin
-    teste1: [{
-        type: "Aguardando",
-        type: "Aprovada",
-        type: "Reprovada",
-        required : true
-    }],
-    video_entrevista: [{
-        type: "Aguardando",
-        type: "Aprovada",
-        type: "Reprovada",
-        required : true
-    }],
-    entrevista: [{
-        type: "Aguardando",
-        type: "Aprovada",
-        type: "Reprovada",
-        required : true
-    }],
+    teste1: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
+    videoEntrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
+    entrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
     resultado: [{
         aprovada: Boolean,
         reprovada: Boolean,
         aguardando: Boolean
     }], //será inserido automaticamente pelo código
     
-    situacao_Participante:[{
+    situacaoParticipante:[{
         ativa: Boolean,
         concluido: Boolean,
         desistente: Boolean
