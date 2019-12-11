@@ -19,23 +19,6 @@ const participanteSchema = new mongoose.Schema ({
     estado: { type: String, required : true},
     formacaoAcademica: {type: String, enum: ['Superior Completo', 'Superior Cursando', 'Ensino Médio Completo'], required : true },
     cursosInscritos: [{type: mongoose.Schema.Types.ObjectId, ref: 'cursoSchema'}],//estrutura normalizada - colocar situação (inscrita e aluna) condição depende do resultado do processo
-  
-
-    //informações inseridas pelo admin
-    teste1: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
-    videoEntrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
-    entrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
-    resultado: [{
-        aprovada: Boolean,
-        reprovada: Boolean,
-        aguardando: Boolean
-    }], //será inserido automaticamente pelo código
-    
-    situacaoParticipante:[{
-        ativa: Boolean,
-        concluido: Boolean,
-        desistente: Boolean
-    }]
 })
 
 const Participantes = mongoose.model('Participantes', participanteSchema)
