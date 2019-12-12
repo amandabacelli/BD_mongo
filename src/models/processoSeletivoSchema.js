@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
-const participanteSchema = new mongoose.Schema ({
+const processoSeletivoSchema = new mongoose.Schema ({
 
     //informações inseridas pelo admin
-    teste1: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
-    videoEntrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
-    entrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada'], required : false },
+    teste: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada']},
+    videoEntrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada']},
+    entrevista: {type: String, enum: ['Aguardando', 'Aprovada', 'Reprovada']},
     resultado: [{
         aprovada: Boolean,
         reprovada: Boolean,
@@ -19,5 +19,5 @@ const participanteSchema = new mongoose.Schema ({
     }]
 })
 
-const ProcessoSeletivo = mongoose.model('ProcessoSeletivo', participanteSchema)
+const ProcessoSeletivo = mongoose.model('ProcessoSeletivo', processoSeletivoSchema)
 module.exports = ProcessoSeletivo

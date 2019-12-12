@@ -72,3 +72,9 @@
 	"estado": "SP",
 	"formacaoAcademica": "Ensino Médio Completo",	
 }
+
+{
+	"teste": "Aprovada",
+    "videoEntrevista":"Aprovada" ,
+    "entrevista": "Aprovada"
+}

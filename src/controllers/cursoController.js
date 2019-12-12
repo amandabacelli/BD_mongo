@@ -1,5 +1,6 @@
 const Cursos = require("../models/cursoSchema")
 const Participantes = require("../models/participanteSchema")
+const mongoose = require("mongoose")
 
 exports.post = (req, res) => {
     let curso = new Cursos(req.body)
@@ -43,18 +44,65 @@ exports.getCursoId = async (req, res) => {
     })
 
 }
+
+// exports.inscricaoCurso = async (req, res) => {
+//     const { nomeCurso } = req.body
+//     const inscreverCurso = new Cursos({
+//         nomeCurso,
+//         participantes: req.params.participanteId
+//     })
+//     try {
+//         await inscreverCurso.save()
+//         let participante = await Participantes.findById(req.params.participanteId)
+//         participante.resultadosProcesso.push(inscreverCurso._id)
+//         await participante.save()
+//         let inscricao = await Cursos.findById(req.params.cursoId)
+//         inscricao.inscritas.push()
+//         res.status(200).send({ mensagem: "Inserido com sucesso" })
+
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(500).send({ mensagem: Error })
+//     }
+// }
+
+// exports.inscricaoCurso = async (req, res) => {
+//     const { nomeCurso } = req.body
+//     const inscreverCurso = new Cursos({
+//         nomeCurso,
+//         participantes: req.params.participanteId
+//     })
+//     try {
+//         await inscreverCurso.save()
+//         let participante = await Participantes.findById(req.params.participanteId)
+//         if (!participante) {
+//             participante.resultadosProcesso.push(inscreverCurso._id)
+//             await participante.save()
+//             let inscricao = await Cursos.findById(req.params.cursoId)
+//             inscricao.inscritas.push()
+//             res.status(200).send({ mensagem: "Inserido com sucesso" })
+//         } else {
+//             res.status(404).send({ mensagem: "Participante já inscrita" })
+//         }
+//     } catch (error) {
+//     console.log(error)
+//     return res.status(500).send({ mensagem: Error })
+// }
+// }
+
+
 exports.inscricaoCurso = async (req, res) => {
     try {
         const cursoId = req.params.cursoId
-        console.log(cursoId)
+        console.log('curso', cursoId)
         const participanteId = req.params.participanteId
-        console.log(participanteId)
-        await Participantes.findByIdAndUpdate(participanteId,  
-            {$push:{cursosInscritos: cursoId}}
+        console.log('participante', participanteId)
+        await Participantes.findByIdAndUpdate(participanteId,
+            { $push: { resultadosProcesso: { curso: cursoId } } }
         )
-        await Cursos.findByIdAndUpdate(cursoId, 
-            {$push:{inscritas:participanteId}}
-            )
+        await Cursos.findByIdAndUpdate(cursoId,
+            { $push: { inscritas: participanteId } }
+        )
         res.status(200).send({ mensagem: "Inserido com sucesso" })
 
     } catch (error) {
@@ -62,59 +110,3 @@ exports.inscricaoCurso = async (req, res) => {
         return res.status(500).send({ mensagem: Error })
     }
 }
-// exports.inscricaoCurso = async (req, res) => {
-//     Cursos.findByIdAndUpdate(idDoCurso, curso.Participantes.push())
-
-//     const {nomeCurso, local, periodo} = req.body
-//     console.log(req.body)
-//     const inscreverCurso = new Cursos({
-//         nomeCurso, local, periodo, inscritas: req.params.participanteId,
-//     })
-//     console.log(req.params.participanteId)
-//     inscreverCurso.save()
-//     try {
-//        await Participantes.findOneAndUpdate({_id: req.params.participanteId}, {$push: {cursosInscritos: inscreverCurso}})
-//        res.status(200).send({ mensagem: "Inserido com sucesso" })
-
-//    } catch (error) {
-//     return res.status(500).send({ mensagem: Error })
-//    }
-// }
-
-// exports.inscricaoCurso2 = async (req, res, next) => {
-//     const inscricao = new Cursos(req.body)
-//     inscricao.save(function (error, inscrita){
-//         try {
-//             Cursos.aggregate([
-//                 {
-//                     $lookup: {
-//                         from: "Participantes",
-//                         localField: "_id",
-//                         foreignField: "nomeCompleto",
-//                         as: "inscritas"
-//                     }
-//                 }
-//             ])
-//             Participantes.aggregate([
-//                 {
-//                     $lookup: {
-//                         from: "Cursos",
-//                         localField: "_id",
-//                         foreignField: ["nomeCompleto", "email", "telefoneCelular"],
-//                         as: "cursosInscritos"
-//                     }
-//                 }
-//             ])
-//             console.log(inscrita)
-//             res.status(200).send({ mensagem: "Inserido com sucesso" })
-
-//         } catch (error) {
-//             return res.status(500).send({ mensagem: Error })
-
-//         }
-
-
-//     })
-
-// }
-

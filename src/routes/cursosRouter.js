@@ -6,7 +6,6 @@ router.post("/", controller.post)
 router.get("/", controller.get)
 router.get("/nome/:nomeCurso", controller.getCursoNome)
 router.get("/:id", controller.getCursoId)
-// router.post("/inscricao/:participanteId", controller.inscricaoCurso)
 router.put("/:cursoId/inscricao/:participanteId", controller.inscricaoCurso)
 
 
