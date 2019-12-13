@@ -110,3 +110,21 @@ exports.inscricaoCurso = async (req, res) => {
         return res.status(500).send({ mensagem: Error })
     }
 }
+
+exports.deleteCurso = (req, res, next) => {
+    try {
+        const cursoId = req.params.id
+        console.log(cursoId)
+        const response = Cursos.findById(curso)
+        console.log(response)
+        response.remove(function (error) {
+            if (!error) {
+                res.status(200).send({ mensagem: `Participante foi removida com sucesso ` })
+            }
+        })
+
+    } catch (error) {
+        return res.status(500).send({ mensagem: Error })
+
+    }
+}

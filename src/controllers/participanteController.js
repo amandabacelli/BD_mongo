@@ -1,5 +1,6 @@
 const Participantes = require("../models/participanteSchema")
 const Cursos = require("../models/cursoSchema")
+const Mongoose = require("mongoose")
 
 //POST--------------------------------------------------------------------------------------------------------------------
 exports.post = (req, res) => {
@@ -65,61 +66,30 @@ exports.deleteParticipante = (req, res, next) => {
     }
 }
 
+exports.atualizarProcesso = async (req, res, next) =>{
+    const participanteId = req.params.participanteId
+    const processoId = req.params.processoId
+    Participantes.findOne({participanteId}, function(err, participante){
+        if (err) {
+            res.status(404).send({ message: "participante não encontrada" })
+            return
+        } else {
+            const updateProcesso = {$set: {}}
 
-exports.atualizarProcesso = async (req, res, next) => {
-    try {
-        const processoId = req.params.processoId
-        console.log('processoId', processoId)
-        const participanteId = req.params.participanteId
-        const participante = await Participantes.findById(participanteId)
-        console.log('participante', participanteId)
-        const status = req.body
-        console.log('status', status)s
-        let numProcesso = await participante.resultadosProcesso
-        console.log('array ID processos', numProcesso)
-        // const atualizar = await Participantes.findById(processoId)
-        // atualizar.resultadosProcesso.push()
-
-        numProcesso.forEach(async function (item) {
-            if (item._id == processoId) {
-                // await Participantes.updateOne(
-                //     { resultadosProcesso: {item}},
-                //     { $set: status },
-                //     { upsert: false }
-                // )
-                item.teste = status.teste
-                item.videoEntrevista = status.videoEntrevista
-                item.entrevista = status.entrevista
-                console.log('item', item)
+            for(let param in req.body){
+                updateProcesso.$set['resultadosProcesso.$.' + param] = req.body[param]
+                //posicao na array [resultadoprocessos...]
             }
-        })
-        res.status(200).send({ mensagem: "Inserido com sucesso" })
-
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send({ mensagem: Error })
-    }
+            //transforma o set em dinamico, podendo variar conforme o q ser enviado no body. Ajustar oq estou mandando no body e salvar no banco
+            Participantes.update(
+                {'resultadosProcesso._id':processoId},
+                updateProcesso,
+                {upsert:true},
+                function (err) {
+                    if (err) return res.status(500).send({ message: err });
+                    res.status(200).send({ message: "Processo atualizado" })
+                }
+            )
+        }
+    })
 }
-
-// exports.atualizarProcesso = async (req, res, next) => {
-//     try {
-//         const cursoId = req.params.cursoId
-//         const curso = await Cursos.findById(cursoId)
-//         console.log('curso', curso)
-//         const participanteId = req.params.participanteId
-//         console.log('participante', participanteId)
-//         const processo = req.body
-//         console.log('processo', processo)
-//         const dados = { ...processo, curso : curso}
-//         console.log('dados',dados)
-
-        // await Participantes.findByIdAndUpdate(participanteId,
-        //     { $push: { resultadosProcesso: dados }},
-        // )
-//         res.status(200).send({ mensagem: "Inserido com sucesso" })
-
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).send({ mensagem: Error })
-//     }
-// }

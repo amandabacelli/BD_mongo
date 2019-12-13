@@ -32,7 +32,7 @@ router.post("/", controller.post)
 router.get("/", controller.get)
 router.get("/:id", controller.getByID)
 router.get("/nome/:nomeCompleto", controller.getNome)
-router.put("/processoseletivo/:participanteId/:processoId", controller.atualizarProcesso)
+router.put("/processoseletivo/:processoId", controller.atualizarProcesso)
 router.delete("/:id", controller.deleteParticipante)
 
 
