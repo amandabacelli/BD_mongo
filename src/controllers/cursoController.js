@@ -44,54 +44,7 @@ exports.getCursoId = async (req, res) => {
     })
 
 }
-
-// exports.inscricaoCurso = async (req, res) => {
-//     const { nomeCurso } = req.body
-//     const inscreverCurso = new Cursos({
-//         nomeCurso,
-//         participantes: req.params.participanteId
-//     })
-//     try {
-//         await inscreverCurso.save()
-//         let participante = await Participantes.findById(req.params.participanteId)
-//         participante.resultadosProcesso.push(inscreverCurso._id)
-//         await participante.save()
-//         let inscricao = await Cursos.findById(req.params.cursoId)
-//         inscricao.inscritas.push()
-//         res.status(200).send({ mensagem: "Inserido com sucesso" })
-
-//     } catch (error) {
-//         console.log(error)
-//         return res.status(500).send({ mensagem: Error })
-//     }
-// }
-
-// exports.inscricaoCurso = async (req, res) => {
-//     const { nomeCurso } = req.body
-//     const inscreverCurso = new Cursos({
-//         nomeCurso,
-//         participantes: req.params.participanteId
-//     })
-//     try {
-//         await inscreverCurso.save()
-//         let participante = await Participantes.findById(req.params.participanteId)
-//         if (!participante) {
-//             participante.resultadosProcesso.push(inscreverCurso._id)
-//             await participante.save()
-//             let inscricao = await Cursos.findById(req.params.cursoId)
-//             inscricao.inscritas.push()
-//             res.status(200).send({ mensagem: "Inserido com sucesso" })
-//         } else {
-//             res.status(404).send({ mensagem: "Participante já inscrita" })
-//         }
-//     } catch (error) {
-//     console.log(error)
-//     return res.status(500).send({ mensagem: Error })
-// }
-// }
-
-
-exports.inscricaoCurso = async (req, res) => {
+exports.putInscricaoCurso = async (req, res) => {
     try {
         const cursoId = req.params.cursoId
         console.log('curso', cursoId)
@@ -103,7 +56,8 @@ exports.inscricaoCurso = async (req, res) => {
         await Cursos.findByIdAndUpdate(cursoId,
             { $push: { inscritas: participanteId } }
         )
-        res.status(200).send({ mensagem: "Inserido com sucesso" })
+        res.status(200).send({ mensagem: "Participante inscrita com sucesso" })
+
 
     } catch (error) {
         console.log(error)
@@ -111,18 +65,17 @@ exports.inscricaoCurso = async (req, res) => {
     }
 }
 
-exports.deleteCurso = (req, res, next) => {
+exports.deleteCurso = async (req, res, next) => {
     try {
         const cursoId = req.params.id
         console.log(cursoId)
-        const response = Cursos.findById(curso)
+        const response = await Cursos.findById(cursoId)
         console.log(response)
         response.remove(function (error) {
             if (!error) {
-                res.status(200).send({ mensagem: `Participante foi removida com sucesso ` })
+                res.status(200).send({ mensagem: `Curso removido com sucesso ` })
             }
         })
-
     } catch (error) {
         return res.status(500).send({ mensagem: Error })
 

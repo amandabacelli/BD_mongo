@@ -6,8 +6,7 @@ router.post("/", controller.post)
 router.get("/", controller.get)
 router.get("/nome/:nomeCurso", controller.getCursoNome)
 router.get("/:id", controller.getCursoId)
-router.put("/:cursoId/inscricao/:participanteId", controller.inscricaoCurso)
-
-
+router.put("/inscricao/:cursoId/:participanteId", controller.putInscricaoCurso)
+router.delete("/:id", controller.deleteCurso)
 
 module.exports = router
