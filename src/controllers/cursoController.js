@@ -1,27 +1,22 @@
 const Cursos = require("../models/cursoSchema")
 const Participantes = require("../models/participanteSchema")
-const mongoose = require("mongoose")
 
 exports.post = (req, res) => {
     let curso = new Cursos(req.body)
-    curso.save(function (err) {
-        if (err) {
+    curso.save()
+        .then(() => {
+            return res.status(201).send({
+                mensagem: "Curso cadastrado com sucesso"
+            })
+        }).catch((err) => {
             return res.status(500).send(err)
-        }
-        return res.status(201).send({
-            status: "true",
-            mensagem: "Curso cadastrado com sucesso"
         })
-    })
 }
-
-exports.get = (req, res) => {
-    Cursos.find(function (err, cursos) {
-        if (err) res.status(500).send(err)
-        res.status(200).send(cursos)
-    })
-
-}
+exports.get = async (req, res) => {
+    let cursos = await Cursos.find()
+    return res.status(200).send(cursos);
+      
+    }
 exports.getCursoNome = async (req, res) => {
     try {
         const nomeCurso = req.params.nomeCurso
@@ -61,7 +56,7 @@ exports.putInscricaoCurso = async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        return res.status(500).send({ mensagem: Error })
+        return res.status(500).send({ mensagem: "Inscrição não realizada" })
     }
 }
 

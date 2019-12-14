@@ -1,7 +1,7 @@
 {
     "name": "Reprograma - Banco de dados",
     "version": "0.1.0",
-    "description": "Banco de dados de participantes e cursos com mongoDB",
+    "description": "Banco de dados não relacional de participantes e cursos utilizando mongoDB",
     "title": "API - Banco de dados Reprograma",
-    "url" : "https://github.com/amandabacelli/BD_mongo"
+    "url" : "localhost:3003"
   }
