@@ -38,7 +38,7 @@ router.post("/", controller.post)
 
 router.get("/:id", controller.getByID)
 /**
-* @api {get} /participantes/:id Listar a Participante cadastrada
+* @api {get} /participantes/:id Listar a Participante cadastrada por ID
 * @apiName Get
 * @apiGroup Participantes
 *
@@ -184,7 +184,4 @@ router.delete("/:id", controller.deleteParticipante)
  *     }
  */
 
-
-
-
-module.exports = router
+ module.exports = router

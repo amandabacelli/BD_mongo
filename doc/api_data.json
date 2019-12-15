@@ -237,7 +237,7 @@
   {
     "type": "get",
     "url": "/cursos/nome/:nomeCurso",
-    "title": "Listar o Curso cadastrado",
+    "title": "Listar o Curso cadastrado por nome",
     "name": "Get",
     "group": "Cursos",
     "success": {
@@ -256,7 +256,7 @@
   {
     "type": "get",
     "url": "/cursos/:id",
-    "title": "Listar o Curso cadastrado",
+    "title": "Listar o Curso cadastrado por ID",
     "name": "Get",
     "group": "Cursos",
     "success": {
@@ -441,7 +441,7 @@
   {
     "type": "get",
     "url": "/participantes/:id",
-    "title": "Listar a Participante cadastrada",
+    "title": "Listar a Participante cadastrada por ID",
     "name": "Get",
     "group": "Participantes",
     "success": {

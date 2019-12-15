@@ -26,7 +26,7 @@ router.get("/", controller.get)
 */
 router.get("/nome/:nomeCurso", controller.getCursoNome)
 /**
-* @api {get} /cursos/nome/:nomeCurso Listar o Curso cadastrado
+* @api {get} /cursos/nome/:nomeCurso Listar o Curso cadastrado por nome
 * @apiName Get
 * @apiGroup Cursos
 *
@@ -47,7 +47,7 @@ router.get("/nome/:nomeCurso", controller.getCursoNome)
 */
 router.get("/:id", controller.getCursoId)
 /**
-* @api {get} /cursos/:id Listar o Curso cadastrado
+* @api {get} /cursos/:id Listar o Curso cadastrado por ID
 * @apiName Get
 * @apiGroup Cursos
 *
@@ -117,8 +117,6 @@ router.post("/", controller.post)
  *     {
  *       "mensagem": "Curso cadastrado com sucesso"
  *     }
- *
- *
  */
 
 router.delete("/:id", controller.deleteCurso)
@@ -130,7 +128,6 @@ router.delete("/:id", controller.deleteCurso)
  *
  * @apiParam {String} cursoId ID do curso que será removido.
  * 
- *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
  *     {

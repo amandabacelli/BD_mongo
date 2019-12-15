@@ -15,8 +15,8 @@ exports.post = (req, res) => {
 exports.get = async (req, res) => {
     let cursos = await Cursos.find()
     return res.status(200).send(cursos);
-      
-    }
+}
+
 exports.getCursoNome = async (req, res) => {
     try {
         const nomeCurso = req.params.nomeCurso
@@ -28,6 +28,7 @@ exports.getCursoNome = async (req, res) => {
         }
     }
 }
+
 exports.getCursoId = async (req, res) => {
     const cursoId = req.params.id
     await Cursos.findById(cursoId, function (err, curso) {
@@ -39,6 +40,7 @@ exports.getCursoId = async (req, res) => {
     })
 
 }
+
 exports.putInscricaoCurso = async (req, res) => {
     try {
         const cursoId = req.params.cursoId
