@@ -1,6 +1,6 @@
 ## Projeto para criação de banco de dados - Reprograma
 
-** Objetivo - Criar banco de dados para a Reprograma 
+**Objetivo** - Criar banco de dados para a Reprograma 
 
 **Tecnologias utilizadas:**
 
